@@ -1,0 +1,46 @@
+[
+  {
+    "name": "hero-bag.webp",
+    "url": "https://cdn.dummyjson.com/product-images/womens-bags/heshe-women's-leather-bag/1.webp"
+  },
+  {
+    "name": "sneakers.webp",
+    "url": "https://cdn.dummyjson.com/product-images/mens-shoes/sports-sneakers-off-white-&-red/1.webp"
+  },
+  {
+    "name": "plant.webp",
+    "url": "https://cdn.dummyjson.com/product-images/home-decoration/plant-pot/1.webp"
+  },
+  {
+    "name": "perfume.webp",
+    "url": "https://cdn.dummyjson.com/product-images/fragrances/dolce-shine-eau-de/1.webp"
+  },
+  {
+    "name": "headphones.webp",
+    "url": "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-airpods-max-silver/1.webp"
+  },
+  {
+    "name": "shirt.webp",
+    "url": "https://cdn.dummyjson.com/product-images/mens-shirts/man-short-sleeve-shirt/1.webp"
+  },
+  {
+    "name": "chair.webp",
+    "url": "https://cdn.dummyjson.com/product-images/furniture/knoll-saarinen-executive-conference-chair/1.webp"
+  },
+  {
+    "name": "watch.webp",
+    "url": "https://cdn.dummyjson.com/product-images/mobile-accessories/apple-watch-series-4-gold/1.webp"
+  },
+  {
+    "name": "category-women.jpg",
+    "url": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=85&fit=crop"
+  },
+  {
+    "name": "category-men.jpg",
+    "url": "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=85&fit=crop"
+  },
+  {
+    "name": "category-home.jpg",
+    "url": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=85&fit=crop"
+  }
+]

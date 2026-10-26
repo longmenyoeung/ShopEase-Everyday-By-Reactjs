@@ -1,0 +1,530 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=Manrope:wght@400;500;600;650;700;750;800&display=swap');
+@import 'tailwindcss';
+
+/* Shared Tailwind tokens: use bg-accent, text-muted, font-display, etc. */
+@theme {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Manrope', sans-serif;
+  --color-ink: #252c35;
+  --color-muted: #68717e;
+  --color-accent: #4b6480;
+  --color-accent-hover: #364e68;
+  --color-accent-soft: #e0e8f0;
+  --color-surface: #f5f5f2;
+  --color-canvas: #fdfdfb;
+  --color-line: #e3e6e8;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth scroll-pt-7;
+  }
+  body {
+    @apply m-0 bg-canvas font-sans text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+  button,
+  a {
+    @apply touch-manipulation;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  button:disabled {
+    @apply cursor-not-allowed opacity-40;
+  }
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    @apply outline-2 outline-offset-4 outline-accent;
+  }
+  ::selection {
+    @apply bg-accent-soft;
+  }
+}
+
+/* Reusable recipes; one-off layouts use Tailwind directly in JSX. */
+@layer components {
+  .page-container {
+    @apply mx-auto w-[calc(100%-2rem)] max-w-7xl sm:w-[calc(100%-4rem)] lg:w-[calc(100%-6rem)];
+  }
+  .skip-link {
+    @apply fixed -top-20 left-5 z-50 rounded-lg bg-white p-3 focus:top-3;
+  }
+  .icon-button {
+    @apply relative inline-flex size-10 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-surface;
+  }
+  .icon-button.active {
+    @apply bg-accent-soft text-accent;
+  }
+  .button {
+    @apply inline-flex items-center justify-center gap-7 rounded-full bg-ink px-6 py-3.5 text-xs font-semibold text-white transition-colors hover:bg-accent;
+  }
+  .button-small {
+    @apply px-5 py-2.5;
+  }
+  .text-button {
+    @apply inline-flex shrink-0 items-center gap-2 py-2 text-xs font-semibold text-accent underline-offset-4 hover:underline;
+  }
+  .eyebrow {
+    @apply block text-[9px] leading-relaxed font-semibold tracking-[0.16em] text-muted;
+  }
+
+  /* Navigation */
+  .announcement {
+    @apply border-b border-line bg-surface text-[9px] text-muted sm:text-[10px];
+  }
+  .announcement-inner {
+    @apply flex min-h-9 items-center justify-between gap-4;
+  }
+  .announcement-inner > span,
+  .announcement-inner > a {
+    @apply flex items-center gap-2;
+  }
+  .announcement-inner svg {
+    @apply size-3.5 shrink-0 text-accent;
+  }
+  .announcement strong {
+    @apply font-semibold text-ink;
+  }
+  .announcement a {
+    @apply text-ink hover:text-accent;
+  }
+  .announcement-inner > .announcement-offer {
+    @apply max-md:hidden;
+  }
+  .header {
+    @apply relative flex h-24 items-center justify-between gap-4 lg:h-28;
+  }
+  .main-nav {
+    @apply hidden items-center gap-7 lg:flex;
+  }
+  .main-nav button,
+  .main-nav a {
+    @apply whitespace-nowrap py-3 text-xs font-medium text-muted hover:text-ink;
+  }
+  .main-nav .deals-link {
+    @apply text-accent;
+  }
+  .nav-dot {
+    @apply ml-1 inline-block size-1 rounded-full bg-accent align-super;
+  }
+  .header-actions {
+    @apply flex items-center gap-0.5 sm:gap-2;
+  }
+  .action-divider {
+    @apply mx-1 h-5 w-px bg-line max-sm:hidden;
+  }
+  .cart-count {
+    @apply ml-1 text-[10px];
+  }
+  .count-badge {
+    @apply absolute -top-0.5 -right-0.5 grid size-4 place-items-center rounded-full bg-accent text-[9px] text-white;
+  }
+  .menu-button {
+    @apply lg:hidden;
+  }
+  .main-nav.is-open {
+    @apply absolute top-21 right-0 left-0 z-20 flex flex-col items-stretch gap-0 rounded-2xl border border-line bg-white px-6 py-3 shadow-lg lg:static lg:flex-row lg:items-center lg:gap-7 lg:border-0 lg:p-0 lg:shadow-none;
+  }
+  .main-nav.is-open button {
+    @apply text-left;
+  }
+  .search-bar {
+    @apply mb-6 flex items-center gap-3 rounded-2xl border border-line bg-white p-3;
+  }
+  .search-bar input {
+    @apply min-w-0 flex-1 border-0 bg-transparent p-2 text-sm;
+  }
+
+  /* Benefits and category cards */
+  .benefits {
+    @apply mt-6 grid grid-cols-2 gap-y-5 border-b border-line py-7 md:grid-cols-4;
+  }
+  .benefit {
+    @apply flex items-center gap-3 px-2 sm:justify-center sm:px-4 md:border-r md:border-line;
+  }
+  .benefit:last-child {
+    @apply border-0;
+  }
+  .benefit svg {
+    @apply size-6 shrink-0 text-accent;
+  }
+  .benefit h3 {
+    @apply mb-1 text-[10px] font-semibold sm:text-xs;
+  }
+  .benefit p {
+    @apply text-[9px] text-muted sm:text-[10px];
+  }
+  .section {
+    @apply mt-12 sm:mt-16;
+  }
+  .section-heading {
+    @apply mb-6 flex items-end justify-between gap-4;
+  }
+  .section-heading .eyebrow {
+    @apply mb-2;
+  }
+  .section-heading h2 {
+    @apply text-2xl leading-snug font-semibold tracking-tight sm:text-3xl;
+  }
+  .section-note {
+    @apply pb-1 text-xs text-muted max-sm:hidden;
+  }
+  .category-grid {
+    @apply grid grid-cols-6 gap-3 sm:grid-cols-5 sm:gap-5;
+  }
+  .category-card {
+    @apply col-span-2 min-w-0 text-left sm:col-span-1;
+  }
+  .category-card:nth-last-child(-n + 2) {
+    @apply max-sm:col-span-3;
+  }
+  .category-card.selected .category-image {
+    @apply ring-2 ring-accent ring-offset-4;
+  }
+  .category-image {
+    @apply h-32 overflow-hidden rounded-2xl bg-surface sm:h-40 lg:h-52;
+  }
+  .category-image img {
+    @apply size-full object-cover transition-transform duration-500;
+  }
+  .category-card:hover img {
+    @apply scale-105;
+  }
+  .category-beauty,
+  .category-electronics {
+    @apply bg-[#edf0f2];
+  }
+  .category-beauty img,
+  .category-electronics img {
+    @apply object-contain p-4;
+  }
+  .category-label {
+    @apply flex items-center justify-between gap-1 px-0.5 py-4;
+  }
+  .category-label strong {
+    @apply block text-xs font-medium sm:text-sm;
+  }
+  .category-label small {
+    @apply mt-1 block text-[9px] text-muted sm:text-[10px];
+  }
+  .category-arrow {
+    @apply grid size-6 shrink-0 place-items-center rounded-full text-muted sm:size-8;
+  }
+  .category-card:hover .category-arrow {
+    @apply bg-accent-soft text-accent;
+  }
+
+  /* Featured offer */
+  .deal-banner {
+    @apply mt-8 grid gap-7 rounded-3xl border border-line bg-[#edf1f5] p-6 sm:mt-10 sm:p-8 lg:grid-cols-[0.9fr_1.4fr] lg:gap-10 lg:p-10;
+  }
+  .deal-copy {
+    @apply flex flex-col items-start justify-center;
+  }
+  .deal-copy h2 {
+    @apply my-4 text-3xl leading-tight font-semibold tracking-tight lg:text-4xl;
+  }
+  .deal-copy > p {
+    @apply text-xs text-muted;
+  }
+  .deal-copy > .text-button {
+    @apply mt-5;
+  }
+  .deal-product {
+    @apply grid grid-cols-[0.9fr_1.1fr] items-center gap-2 rounded-2xl bg-white/80 py-4 pr-4 sm:gap-5 sm:pr-6;
+  }
+  .deal-image {
+    @apply relative h-48 sm:h-56;
+  }
+  .deal-image > img {
+    @apply size-full -rotate-12 object-contain p-3;
+  }
+  .deal-save {
+    @apply absolute top-1 left-3 z-10 rounded-full bg-accent-soft px-2.5 py-1.5 text-[8px] font-semibold tracking-wider text-accent;
+  }
+  .deal-details > .eyebrow {
+    @apply text-[7px];
+  }
+  .deal-details h3 {
+    @apply mt-2 mb-1 text-base font-semibold tracking-tight sm:text-xl;
+  }
+  .deal-details > p {
+    @apply text-[10px] leading-relaxed text-muted;
+  }
+  .deal-price {
+    @apply my-4 text-2xl font-semibold text-accent;
+  }
+  .deal-price del {
+    @apply ml-1 text-xs font-normal text-muted;
+  }
+  .stock-label {
+    @apply flex items-center gap-1.5 text-[9px] text-muted;
+  }
+  .stock-dot {
+    @apply size-1.5 rounded-full bg-accent;
+  }
+  .stock-track {
+    @apply mt-2 h-1 overflow-hidden rounded-full bg-line;
+  }
+  .stock-track span {
+    @apply block h-full w-[36%] rounded-full bg-accent;
+  }
+  .deal-footnote {
+    @apply mt-2 block text-[8px] text-muted;
+  }
+
+  /* Catalog controls */
+  .products-section {
+    @apply scroll-mt-7;
+  }
+  .product-tabs {
+    @apply mb-7 flex gap-2 overflow-x-auto pb-2;
+    scrollbar-width: none;
+  }
+  .product-tabs button {
+    @apply shrink-0 rounded-full border border-line px-4 py-2 text-[11px] text-muted transition-colors hover:bg-surface;
+  }
+  .product-tabs button.active {
+    @apply border-ink bg-ink text-white;
+  }
+  .product-tabs .clear-filters {
+    @apply ml-auto border-transparent text-accent;
+  }
+  .product-grid {
+    @apply grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 lg:gap-6;
+  }
+
+  /* Newsletter and footer */
+  .newsletter {
+    @apply my-12 flex flex-col items-start gap-7 rounded-3xl bg-ink px-6 py-9 text-white sm:my-16 sm:px-10 lg:flex-row lg:items-center lg:gap-6;
+  }
+  .newsletter-icon {
+    @apply hidden size-14 shrink-0 place-items-center rounded-full border border-white/20 text-white/70 xl:grid;
+  }
+  .newsletter-copy {
+    @apply flex-1;
+  }
+  .newsletter-copy > .eyebrow {
+    @apply mb-2 text-[8px] text-white/60;
+  }
+  .newsletter h2 {
+    @apply text-2xl font-medium tracking-tight sm:text-3xl;
+  }
+  .newsletter-copy > p {
+    @apply mt-2 text-xs leading-relaxed text-white/65;
+  }
+  .newsletter form {
+    @apply w-full lg:w-[36%];
+  }
+  .newsletter-input {
+    @apply flex rounded-full bg-white p-1.5;
+  }
+  .newsletter-input input {
+    @apply min-w-0 flex-1 rounded-full border-0 bg-transparent px-4 py-2 text-xs text-ink;
+  }
+  .newsletter-input button {
+    @apply grid size-10 shrink-0 place-items-center rounded-full bg-accent text-white transition-colors hover:bg-accent-hover;
+  }
+  .newsletter-disclaimer {
+    @apply mt-3 text-[9px] leading-relaxed text-white/65;
+  }
+  .footer {
+    @apply border-t border-line bg-surface;
+  }
+  .footer-grid {
+    @apply grid grid-cols-2 gap-x-6 gap-y-9 py-10 lg:grid-cols-[1.5fr_1fr_1fr_1.3fr] lg:gap-10 lg:py-12;
+  }
+  .footer-about {
+    @apply col-span-2 lg:col-span-1;
+  }
+  .footer-about > p {
+    @apply mt-5 text-xs leading-7 text-muted;
+  }
+  .footer-signoff {
+    @apply mt-4 flex items-center gap-2 text-[11px] text-accent;
+  }
+  .footer-grid h3 {
+    @apply mb-5 text-xs font-semibold;
+  }
+  .footer-grid > div:not(.footer-about) > a,
+  .footer-grid > div:not(.footer-about) > button,
+  .footer-grid > div:not(.footer-about) > span {
+    @apply mb-3 flex items-start gap-2 text-left text-[11px] leading-relaxed text-muted;
+  }
+  .footer-grid > div > button:hover,
+  .footer-grid > div > a:hover {
+    @apply text-accent;
+  }
+  .footer-contact {
+    @apply col-span-2 lg:col-span-1;
+  }
+  .footer-contact svg {
+    @apply mt-0.5 shrink-0;
+  }
+  .footer-bottom {
+    @apply flex flex-wrap items-center justify-between gap-4 border-t border-line py-6 text-[9px] text-muted;
+  }
+  .footer-bottom > span {
+    @apply max-sm:hidden;
+  }
+  .payment-methods {
+    @apply flex items-center gap-1.5;
+  }
+  .payment-methods > b,
+  .mastercard {
+    @apply inline-flex h-6 min-w-8 items-center justify-center rounded border border-line bg-white px-1.5 text-[9px] font-semibold text-muted;
+  }
+  .mastercard i {
+    @apply size-2.5 rounded-full bg-muted/70;
+  }
+  .mastercard i + i {
+    @apply -ml-1 bg-muted/40;
+  }
+
+  /* Loading, empty states, and native dialogs */
+  .empty-state {
+    @apply flex flex-col items-center gap-4 rounded-2xl bg-surface px-5 py-14 text-center;
+  }
+  .empty-state > svg {
+    @apply text-accent;
+  }
+  .empty-state h3 {
+    @apply text-xl font-semibold tracking-tight;
+  }
+  .empty-state p {
+    @apply max-w-sm text-sm leading-7 text-muted;
+  }
+  .catalog-loading {
+    @apply my-12 text-center text-sm text-muted;
+  }
+  .loading-spinner {
+    @apply mr-2 inline-block size-4 animate-spin rounded-full border-2 border-line border-t-accent align-middle;
+  }
+  .skeleton-grid {
+    @apply mt-6 grid grid-cols-2 gap-5 lg:grid-cols-4;
+  }
+  .skeleton-grid > div {
+    @apply h-60 animate-pulse rounded-2xl bg-surface;
+  }
+  .modal {
+    @apply border-0 bg-white p-0 text-ink shadow-2xl;
+  }
+  .modal::backdrop {
+    @apply bg-ink/45 backdrop-blur-sm;
+  }
+  .modal-content {
+    @apply p-6 sm:p-7;
+  }
+  .modal-heading {
+    @apply mb-6 flex items-center justify-between gap-4;
+  }
+  .modal-heading h2 {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+  .info-modal {
+    @apply m-auto w-[calc(100%-2rem)] max-w-lg rounded-2xl;
+  }
+  .info-text {
+    @apply mb-6 text-sm leading-7 text-muted;
+  }
+  .cart-drawer {
+    @apply fixed inset-y-0 right-0 left-auto m-0 h-dvh max-h-none w-full max-w-md;
+  }
+  .cart-drawer .modal-content {
+    @apply flex min-h-full flex-col;
+  }
+  .shipping-message {
+    @apply flex items-center gap-2 rounded-xl bg-accent-soft p-3 text-[11px] text-accent;
+  }
+  .shipping-message svg {
+    @apply shrink-0;
+  }
+  .cart-items {
+    @apply flex-1;
+  }
+  .cart-item {
+    @apply flex items-center gap-4 border-b border-line py-5;
+  }
+  .cart-item > img {
+    @apply h-24 w-20 shrink-0 rounded-xl bg-surface object-contain p-2;
+  }
+  .cart-item-details {
+    @apply min-w-0 flex-1;
+  }
+  .cart-item h3 {
+    @apply text-xs font-semibold;
+  }
+  .cart-item p {
+    @apply mt-1.5 text-xs text-muted;
+  }
+  .quantity-control {
+    @apply mt-3 inline-flex items-center rounded-full border border-line text-xs;
+  }
+  .quantity-control > button {
+    @apply grid size-8 place-items-center;
+  }
+  .quantity-control > span {
+    @apply min-w-7 text-center;
+  }
+  .cart-summary {
+    @apply pt-6;
+  }
+  .cart-summary > div:first-child {
+    @apply flex justify-between text-base;
+  }
+  .cart-summary > p {
+    @apply mt-2 text-[11px] text-muted;
+  }
+  .demo-notice {
+    @apply mt-5 rounded-xl bg-surface p-4 text-[11px] leading-6 text-muted;
+  }
+  .cart-summary > .button {
+    @apply mt-4 w-full;
+  }
+  .remove-item {
+    @apply text-muted;
+  }
+  .cart-drawer .empty-state {
+    @apply my-auto bg-white;
+  }
+}
+
+@media (max-width: 380px) {
+  .header-actions .icon-button {
+    @apply size-8;
+  }
+  .header-actions svg {
+    @apply size-4;
+  }
+  .announcement-inner > a {
+    @apply text-[8px];
+  }
+  .search-bar {
+    @apply gap-1 p-2;
+  }
+  .search-bar > svg {
+    @apply hidden;
+  }
+  .section-heading h2 {
+    @apply text-xl;
+  }
+  .section-heading .text-button {
+    @apply text-[10px];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

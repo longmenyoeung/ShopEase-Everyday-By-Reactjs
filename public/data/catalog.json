@@ -1,0 +1,103 @@
+{
+  "categories": [
+    { "id": "women", "name": "Women", "image": "/images/category-women.jpg" },
+    { "id": "men", "name": "Men", "image": "/images/category-men.jpg" },
+    { "id": "home", "name": "Home & living", "image": "/images/category-home.jpg" },
+    { "id": "beauty", "name": "Beauty", "image": "/images/perfume.webp" },
+    { "id": "electronics", "name": "Electronics", "image": "/images/headphones.webp" }
+  ],
+  "products": [
+    {
+      "id": "essential-shirt",
+      "name": "Everyday Cotton Shirt",
+      "category": "men",
+      "categoryLabel": "THE EVERYDAY EDIT",
+      "price": 39.99,
+      "rating": 4.8,
+      "image": "/images/shirt.webp",
+      "badge": "NEW"
+    },
+    {
+      "id": "leather-handbag",
+      "name": "Classic Leather Handbag",
+      "category": "women",
+      "categoryLabel": "LITTLE LUXURIES",
+      "price": 59.99,
+      "rating": 4.9,
+      "image": "/images/hero-bag.webp",
+      "badge": "NEW"
+    },
+    {
+      "id": "classic-sneakers",
+      "name": "Everyday Sport Sneakers",
+      "category": "men",
+      "categoryLabel": "GO-TO ESSENTIALS",
+      "price": 49.99,
+      "originalPrice": 65,
+      "rating": 4.7,
+      "image": "/images/sneakers.webp",
+      "badge": "BESTSELLER"
+    },
+    {
+      "id": "eau-de-parfum",
+      "name": "Signature Eau de Parfum",
+      "category": "beauty",
+      "categoryLabel": "YOUR DAILY RITUAL",
+      "price": 29.99,
+      "rating": 4.9,
+      "image": "/images/perfume.webp",
+      "badge": "NEW"
+    },
+    {
+      "id": "studio-headphones",
+      "name": "Studio Wireless Headphones",
+      "category": "electronics",
+      "categoryLabel": "SOUND GOOD. FEEL GOOD.",
+      "price": 89.99,
+      "rating": 4.8,
+      "image": "/images/headphones.webp",
+      "badge": "NEW"
+    },
+    {
+      "id": "green-companion",
+      "name": "The Little Green Companion",
+      "category": "home",
+      "categoryLabel": "MAKE YOURSELF AT HOME",
+      "price": 24.99,
+      "rating": 4.8,
+      "image": "/images/plant.webp",
+      "badge": "NEW"
+    },
+    {
+      "id": "accent-chair",
+      "name": "The Everyday Lounge Chair",
+      "category": "home",
+      "categoryLabel": "A COZIER CORNER",
+      "price": 129.99,
+      "rating": 4.9,
+      "image": "/images/chair.webp",
+      "badge": "BESTSELLER"
+    },
+    {
+      "id": "smart-watch",
+      "name": "Everyday Smart Watch",
+      "category": "electronics",
+      "categoryLabel": "YOUR EVERYDAY COMPANION",
+      "price": 59.99,
+      "originalPrice": 119.99,
+      "rating": 4.8,
+      "image": "/images/watch.webp",
+      "badge": "50% OFF"
+    }
+  ],
+  "deal": {
+    "id": "smart-watch",
+    "name": "Everyday Smart Watch",
+    "description": "A smarter way to keep moving.",
+    "category": "electronics",
+    "price": 59.99,
+    "originalPrice": 119.99,
+    "stock": 23,
+    "image": "/images/watch.webp"
+  }
+}
